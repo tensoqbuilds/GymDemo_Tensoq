@@ -2,27 +2,96 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, Phone, MessageSquare, Sun, Moon } from 'lucide-react';
 import { useGym } from '../context/GymContext';
 
+/**
+ * Iron District Gym Geometric SVG Brand Emblem
+ * Uses currentColor for paths so it dynamically reacts to navbar state transitions
+ */
+const BrandLogoEmblem: React.FC<{ isDarkSurface: boolean }> = ({ isDarkSurface }) => {
+  return (
+    <svg
+      className="w-7 h-7 sm:w-8 sm:h-8 shrink-0 transition-all duration-300"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      {/* Outer Hexagonal Shield Plate */}
+      <path
+        d="M16 2.5L28.5 9.5V22.5L16 29.5L3.5 22.5V9.5L16 2.5Z"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinejoin="round"
+        className="transition-colors duration-300"
+      />
+      {/* Heavy Barbell Calibrated Discs */}
+      <path
+        d="M9.5 12.5V19.5M12.5 11V21M19.5 11V21M22.5 12.5V19.5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        className="transition-colors duration-300 opacity-90"
+      />
+      {/* Steel Bar */}
+      <path
+        d="M7 16H25"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        className="transition-colors duration-300"
+      />
+      {/* Electric Neon District Core */}
+      <rect
+        x="14"
+        y="14"
+        width="4"
+        height="4"
+        rx="0.5"
+        className={`transition-colors duration-300 ${
+          isDarkSurface ? 'fill-[#ccff00]' : 'fill-emerald-600'
+        }`}
+      />
+    </svg>
+  );
+};
+
 export const Navbar: React.FC = () => {
   const { config, openLeadModal, getWhatsAppLink, theme, toggleTheme } = useGym();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('top');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      const scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
+      setIsScrolled(scrollPos > 25);
+
+      // Simple active section detection
+      const sections = ['location', 'gallery', 'memberships', 'transformations', 'trainers', 'programs', 'top'];
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 160) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
     };
+
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { label: 'HOME', href: '#top' },
-    { label: 'PROGRAMS', href: '#programs' },
-    { label: 'TRAINERS', href: '#trainers' },
-    { label: 'TRANSFORMATIONS', href: '#transformations' },
-    { label: 'MEMBERSHIPS', href: '#memberships' },
-    { label: 'FACILITY', href: '#gallery' },
-    { label: 'CONTACT', href: '#location' },
+    { label: 'HOME', href: '#top', id: 'top' },
+    { label: 'PROGRAMS', href: '#programs', id: 'programs' },
+    { label: 'TRAINERS', href: '#trainers', id: 'trainers' },
+    { label: 'TRANSFORMATIONS', href: '#transformations', id: 'transformations' },
+    { label: 'MEMBERSHIPS', href: '#memberships', id: 'memberships' },
+    { label: 'FACILITY', href: '#gallery', id: 'gallery' },
+    { label: 'CONTACT', href: '#location', id: 'location' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -34,84 +103,209 @@ export const Navbar: React.FC = () => {
     }
   };
 
+  /**
+   * Theme-Aware Navbar State Model:
+   * 1. LIGHT + TOP: Light surface, near-black logo/text, dark icons.
+   * 2. LIGHT + SCROLLED: Near-black surface, pure-white logo/text, light icons.
+   * 3. DARK + TOP: Near-black surface, pure-white logo/text, light icons.
+   * 4. DARK + SCROLLED: Elevated near-black surface, pure-white logo/text, light icons.
+   */
+  const isDarkSurface = theme === 'dark' || isScrolled;
+
+  const headerBgStyle = {
+    backgroundColor: isScrolled
+      ? 'rgba(9, 9, 11, 0.96)'
+      : theme === 'dark'
+        ? 'rgba(9, 9, 11, 0.88)'
+        : 'rgba(255, 255, 255, 0.95)',
+    borderColor: isScrolled
+      ? 'rgba(255, 255, 255, 0.12)'
+      : theme === 'dark'
+        ? 'rgba(255, 255, 255, 0.08)'
+        : 'rgba(0, 0, 0, 0.08)',
+  };
+
+  // Explicit foreground colors for foolproof WCAG contrast
+  const logoTextColor = isDarkSurface ? '#ffffff' : '#09090b';
+  const logoSubtextColor = isDarkSurface ? '#a1a1aa' : '#52525b';
+  const iconColor = isDarkSurface ? '#ffffff' : '#09090b';
+
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+      style={headerBgStyle}
+      className={`sticky top-0 z-40 w-full backdrop-blur-md transition-all duration-300 border-b ${
         isScrolled
-          ? 'bg-[#09090b]/92 dark:bg-[#09090b]/95 light:bg-white/95 backdrop-blur-md border-b border-black/5 dark:border-white/10 py-3 shadow-xl dark:shadow-black/40'
-          : 'bg-transparent border-b border-black/5 dark:border-white/5 py-4 sm:py-5'
+          ? 'py-3 shadow-xl shadow-black/30'
+          : 'py-4 sm:py-5 shadow-xs'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Zone 1: Brand Wordmark (Single text element) */}
+        
+        {/* Zone 1: Brand Wordmark & Geometric SVG Emblem */}
         <a
           href="#top"
-          className="text-lg sm:text-xl font-bold tracking-tight text-zinc-900 dark:text-white font-display uppercase hover:opacity-80 transition-opacity whitespace-nowrap"
+          onClick={(e) => handleNavClick(e, '#top')}
+          style={{ color: logoTextColor }}
+          className={`group flex items-center gap-2.5 sm:gap-3 transition-colors duration-300 select-none cursor-pointer hover:opacity-90 ${
+            isDarkSurface ? 'text-white' : 'text-zinc-950'
+          }`}
+          aria-label={`${config.gymName} - Back to top`}
         >
-          {config.gymName}
+          {/* Theme-aware SVG logo icon with currentColor */}
+          <BrandLogoEmblem isDarkSurface={isDarkSurface} />
+
+          <div className="flex flex-col">
+            <span
+              style={{ color: logoTextColor }}
+              className={`text-base sm:text-lg md:text-xl font-black tracking-tight font-display uppercase whitespace-nowrap leading-none transition-colors duration-300 ${
+                isDarkSurface ? 'text-white' : 'text-zinc-950'
+              }`}
+            >
+              {config.gymName}
+            </span>
+            <span
+              style={{ color: logoSubtextColor }}
+              className={`text-[9px] sm:text-[10px] font-mono tracking-widest uppercase transition-colors duration-300 mt-1 hidden xs:block ${
+                isDarkSurface ? 'text-zinc-400' : 'text-zinc-600'
+              }`}
+            >
+              {config.neighborhood} · {config.city}
+            </span>
+          </div>
         </a>
 
-        {/* Zone 2: Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-7 text-xs font-semibold tracking-wider text-zinc-600 dark:text-zinc-300">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="hover:text-emerald-600 dark:hover:text-[#ccff00] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-emerald-600 dark:after:bg-[#ccff00] hover:after:w-full after:transition-all after:duration-200"
-            >
-              {link.label}
-            </a>
-          ))}
+        {/* Zone 2: Navigation Links with Dynamic Contrast & State-Aware Highlights */}
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-xs font-semibold tracking-wider font-display">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                style={{
+                  color: isDarkSurface
+                    ? isActive
+                      ? '#ccff00'
+                      : '#e4e4e7'
+                    : isActive
+                      ? '#047857'
+                      : '#27272a',
+                }}
+                className={`py-1 relative uppercase transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:transition-all after:duration-200 ${
+                  isDarkSurface
+                    ? isActive
+                      ? 'text-[#ccff00] font-bold after:w-full after:bg-[#ccff00]'
+                      : 'text-zinc-200 hover:text-[#ccff00] after:w-0 hover:after:w-full after:bg-[#ccff00]'
+                    : isActive
+                      ? 'text-emerald-700 font-bold after:w-full after:bg-emerald-600'
+                      : 'text-zinc-800 hover:text-emerald-700 after:w-0 hover:after:w-full after:bg-emerald-600'
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
-        {/* Zone 3: Primary Action, Theme Toggle & Mobile Toggle */}
-        <div className="flex items-center gap-2.5 sm:gap-3">
-          {/* Light / Dark Mode Toggle Button */}
+        {/* Zone 3: CTA Button, Theme Switcher & Mobile Toggle */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          
+          {/* Light / Dark Mode Toggle Button with Guaranteed Contrast */}
           <button
             type="button"
             onClick={toggleTheme}
-            className="p-2 sm:p-2.5 rounded-lg border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/25 text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white bg-black/5 dark:bg-white/5 transition-colors cursor-pointer"
+            style={{
+              color: iconColor,
+              borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)',
+              backgroundColor: isDarkSurface ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.04)',
+            }}
+            className={`p-2 sm:p-2.5 rounded-lg border transition-all duration-300 cursor-pointer ${
+              isDarkSurface
+                ? 'border-white/20 bg-white/10 text-white hover:border-white/40 hover:bg-white/15'
+                : 'border-black/15 bg-black/5 text-zinc-900 hover:border-black/30 hover:bg-black/10'
+            }`}
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {theme === 'dark' ? (
               <Sun className="w-4 h-4 text-[#ccff00] hover:rotate-45 transition-transform" />
             ) : (
-              <Moon className="w-4 h-4 text-zinc-800 hover:-rotate-12 transition-transform" />
+              <Moon
+                style={{ color: iconColor }}
+                className={`w-4 h-4 hover:-rotate-12 transition-transform ${
+                  isDarkSurface ? 'text-white' : 'text-zinc-950'
+                }`}
+              />
             )}
           </button>
 
+          {/* High-Converting CTA Button: Constant High Contrast Electric Lime */}
           <button
             onClick={() => openLeadModal('Navbar CTA')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 text-xs font-bold tracking-wide text-black bg-[#ccff00] hover:bg-[#b8e600] active:scale-[0.98] transition-all rounded shadow-sm shadow-[#ccff00]/10 whitespace-nowrap cursor-pointer uppercase font-display"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 text-xs font-black tracking-wide text-black bg-[#ccff00] hover:bg-[#b8e600] active:scale-[0.98] transition-all rounded shadow-md shadow-[#ccff00]/20 whitespace-nowrap cursor-pointer uppercase font-display"
           >
             <span>BOOK FREE TRIAL</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
           </button>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile Menu Toggle Button with Dynamic Contrast */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white rounded-md border border-black/10 dark:border-white/10 transition-colors"
+            style={{
+              color: iconColor,
+              borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)',
+              backgroundColor: isDarkSurface ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.03)',
+            }}
+            className={`lg:hidden p-2 rounded-lg border transition-all duration-300 cursor-pointer ${
+              isDarkSurface
+                ? 'text-white border-white/20 hover:border-white/40 hover:bg-white/10'
+                : 'text-zinc-950 border-black/15 hover:border-black/30 hover:bg-black/5'
+            }`}
             aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Navigation Drawer with Synchronized Theme Styling */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-full bg-white/98 dark:bg-[#09090b]/98 backdrop-blur-xl border-b border-black/10 dark:border-white/10 shadow-2xl p-6 transition-all animate-in fade-in slide-in-from-top-4 duration-200">
-          <nav className="flex flex-col space-y-4">
-            <div className="flex items-center justify-between pb-2 border-b border-black/5 dark:border-white/5">
-              <span className="text-xs font-mono uppercase text-zinc-500">Theme Preference</span>
+        <div
+          style={{
+            backgroundColor: isDarkSurface ? 'rgba(9, 9, 11, 0.98)' : 'rgba(255, 255, 255, 0.98)',
+            borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.1)',
+            color: isDarkSurface ? '#ffffff' : '#09090b',
+          }}
+          className={`lg:hidden fixed inset-x-0 top-full backdrop-blur-xl border-b shadow-2xl p-6 transition-all duration-200 ${
+            isDarkSurface ? 'text-white border-white/15' : 'text-zinc-950 border-black/10'
+          }`}
+        >
+          <nav className="flex flex-col space-y-3.5">
+            {/* Theme Toggle row in Mobile Drawer */}
+            <div
+              style={{
+                borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
+              }}
+              className="flex items-center justify-between pb-3 border-b"
+            >
+              <span
+                style={{ color: isDarkSurface ? '#a1a1aa' : '#52525b' }}
+                className="text-xs font-mono uppercase font-semibold"
+              >
+                Color Theme
+              </span>
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-black/10 dark:border-white/10 text-xs font-semibold text-zinc-800 dark:text-zinc-200"
+                style={{
+                  color: isDarkSurface ? '#ffffff' : '#09090b',
+                  borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)',
+                  backgroundColor: isDarkSurface ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
+                }}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer"
               >
                 {theme === 'dark' ? (
                   <>
@@ -120,49 +314,80 @@ export const Navbar: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <Moon className="w-4 h-4 text-zinc-800" />
+                    <Moon className="w-4 h-4 text-zinc-900" />
                     <span>Dark Mode</span>
                   </>
                 )}
               </button>
             </div>
 
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-base font-semibold tracking-wider text-zinc-800 dark:text-zinc-200 hover:text-emerald-600 dark:hover:text-[#ccff00] transition-colors py-2 border-b border-black/5 dark:border-white/5"
-              >
-                {link.label}
-              </a>
-            ))}
+            {/* Mobile Navigation Links */}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  style={{
+                    color: isDarkSurface
+                      ? isActive
+                        ? '#ccff00'
+                        : '#f4f4f5'
+                      : isActive
+                        ? '#047857'
+                        : '#18181b',
+                    borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)',
+                  }}
+                  className={`text-base font-bold font-display tracking-wider transition-colors py-2.5 border-b uppercase ${
+                    isDarkSurface
+                      ? isActive
+                        ? 'text-[#ccff00]'
+                        : 'text-zinc-100 hover:text-[#ccff00]'
+                      : isActive
+                        ? 'text-emerald-700'
+                        : 'text-zinc-900 hover:text-emerald-700'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
 
-            <div className="pt-4 flex flex-col gap-3">
+            {/* Mobile Conversion Actions */}
+            <div className="pt-3 flex flex-col gap-3">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   openLeadModal('Mobile Menu CTA');
                 }}
-                className="w-full py-3.5 text-xs font-bold tracking-wider text-black bg-[#ccff00] hover:bg-[#b8e600] rounded text-center uppercase font-display flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                className="w-full py-3.5 text-xs font-black tracking-wider text-black bg-[#ccff00] hover:bg-[#b8e600] rounded text-center uppercase font-display flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-[#ccff00]/25"
               >
-                BOOK FREE TRIAL NOW
-                <ArrowUpRight className="w-4 h-4" />
+                <span>BOOK FREE TRIAL NOW</span>
+                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </button>
 
-              <div className="grid grid-cols-2 gap-2 pt-2">
+              <div className="grid grid-cols-2 gap-2.5 pt-1">
                 <a
                   href={`tel:${config.phone}`}
-                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded border border-black/10 dark:border-white/10 text-xs font-medium text-zinc-800 dark:text-zinc-300 hover:bg-black/5 dark:hover:bg-white/5"
+                  style={{
+                    color: isDarkSurface ? '#ffffff' : '#09090b',
+                    borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.12)',
+                  }}
+                  className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg border text-xs font-bold transition-colors ${
+                    isDarkSurface
+                      ? 'border-white/15 text-white hover:bg-white/10'
+                      : 'border-black/15 text-zinc-900 hover:bg-black/5'
+                  }`}
                 >
-                  <Phone className="w-3.5 h-3.5 text-emerald-600 dark:text-[#ccff00]" />
+                  <Phone className={`w-3.5 h-3.5 ${isDarkSurface ? 'text-[#ccff00]' : 'text-emerald-700'}`} />
                   Call Gym
                 </a>
                 <a
                   href={getWhatsAppLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded border border-emerald-500/30 text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10"
+                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg border border-emerald-500/40 text-xs font-bold text-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20"
                 >
                   <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />
                   WhatsApp

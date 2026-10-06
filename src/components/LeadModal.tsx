@@ -42,7 +42,6 @@ export const LeadModal: React.FC = () => {
 
   const handleNext = () => {
     if (step === 3) {
-      // proceeding to step 4 (contact)
       setStep(4);
     } else {
       setStep((prev) => prev + 1);
@@ -95,21 +94,21 @@ export const LeadModal: React.FC = () => {
       className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
     >
       <div 
-        className="relative w-full max-w-xl bg-[#121215] border border-white/10 rounded-xl shadow-2xl overflow-hidden text-zinc-100 animate-in fade-in zoom-in-95 duration-200"
+        className="relative w-full max-w-xl bg-white dark:bg-[#121215] border border-black/10 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden text-zinc-900 dark:text-zinc-100 animate-in fade-in zoom-in-95 duration-200"
       >
         {/* Top Progress & Close Button */}
-        <div className="flex items-center justify-between p-5 border-b border-white/5 bg-[#16161b]">
+        <div className="flex items-center justify-between p-5 border-b border-black/5 dark:border-white/5 bg-zinc-50 dark:bg-[#16161b]">
           <div>
-            <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">
+            <span className="text-[10px] font-mono tracking-widest text-zinc-500 dark:text-zinc-400 uppercase">
               {isSubmitted ? 'PASS CONFIRMED' : `STEP ${step} OF 4 · VIP TRIAL ACCESS`}
             </span>
-            <h2 id="lead-modal-title" className="text-base sm:text-lg font-bold font-display uppercase tracking-tight text-white">
+            <h2 id="lead-modal-title" className="text-base sm:text-lg font-bold font-display uppercase tracking-tight text-zinc-900 dark:text-white">
               {isSubmitted ? "YOU'RE ONE STEP CLOSER" : 'CLAIM YOUR 1-DAY PASS'}
             </h2>
           </div>
           <button
             onClick={handleResetAndClose}
-            className="p-1.5 text-zinc-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors"
+            className="p-1.5 text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
             aria-label="Close dialog"
           >
             <X className="w-5 h-5" />
@@ -118,9 +117,9 @@ export const LeadModal: React.FC = () => {
 
         {/* Multi-step progress bar */}
         {!isSubmitted && (
-          <div className="w-full bg-white/5 h-1">
+          <div className="w-full bg-black/5 dark:bg-white/5 h-1">
             <div
-              className="bg-[#ccff00] h-1 transition-all duration-300"
+              className="bg-emerald-600 dark:bg-[#ccff00] h-1 transition-all duration-300"
               style={{ width: `${(step / 4) * 100}%` }}
             />
           </div>
@@ -130,32 +129,32 @@ export const LeadModal: React.FC = () => {
           {isSubmitted ? (
             /* Success confirmation screen */
             <div className="text-center py-6 space-y-6">
-              <div className="w-14 h-14 rounded-full bg-[#ccff00]/10 border border-[#ccff00]/30 mx-auto flex items-center justify-center text-[#ccff00]">
+              <div className="w-14 h-14 rounded-full bg-emerald-500/10 dark:bg-[#ccff00]/10 border border-emerald-500/40 dark:border-[#ccff00]/30 mx-auto flex items-center justify-center text-emerald-600 dark:text-[#ccff00]">
                 <Check className="w-8 h-8 stroke-[2.5]" />
               </div>
 
               <div className="space-y-2">
-                <h3 className="text-2xl font-bold font-display uppercase text-white">
+                <h3 className="text-2xl font-bold font-display uppercase text-zinc-900 dark:text-white">
                   YOU'RE IN, {fullName.split(' ')[0]}!
                 </h3>
-                <p className="text-sm text-zinc-400 max-w-md mx-auto">
-                  Your VIP Day Pass has been reserved at <span className="text-zinc-200 font-semibold">{config.gymName}</span> ({config.neighborhood}, {config.city}). Our lead coach will call you on <span className="text-[#ccff00] font-mono">{phone}</span> to schedule your consultation.
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-md mx-auto">
+                  Your VIP Day Pass has been reserved at <span className="text-zinc-900 dark:text-zinc-200 font-semibold">{config.gymName}</span> ({config.neighborhood}, {config.city}). Our lead coach will call you on <span className="text-emerald-600 dark:text-[#ccff00] font-mono font-bold">{phone}</span> to schedule your consultation.
                 </p>
               </div>
 
               {/* Booking Summary Box */}
-              <div className="bg-[#18181e] border border-white/10 rounded-lg p-4 text-left text-xs space-y-2 max-w-md mx-auto">
-                <div className="flex justify-between border-b border-white/5 pb-2 text-zinc-400">
+              <div className="bg-zinc-50 dark:bg-[#18181e] border border-black/5 dark:border-white/10 rounded-xl p-4 text-left text-xs space-y-2 max-w-md mx-auto">
+                <div className="flex justify-between border-b border-black/5 dark:border-white/5 pb-2 text-zinc-500 dark:text-zinc-400">
                   <span>Selected Focus:</span>
-                  <span className="text-white font-medium">{goal}</span>
+                  <span className="text-zinc-900 dark:text-white font-medium">{goal}</span>
                 </div>
-                <div className="flex justify-between border-b border-white/5 pb-2 text-zinc-400">
+                <div className="flex justify-between border-b border-black/5 dark:border-white/5 pb-2 text-zinc-500 dark:text-zinc-400">
                   <span>Preferred Timing:</span>
-                  <span className="text-white font-medium">{preferredTime}</span>
+                  <span className="text-zinc-900 dark:text-white font-medium">{preferredTime}</span>
                 </div>
-                <div className="flex justify-between text-zinc-400">
+                <div className="flex justify-between text-zinc-500 dark:text-zinc-400">
                   <span>Facility Location:</span>
-                  <span className="text-white font-medium">{config.neighborhood}, {config.city}</span>
+                  <span className="text-zinc-900 dark:text-white font-medium">{config.neighborhood}, {config.city}</span>
                 </div>
               </div>
 
@@ -172,7 +171,7 @@ export const LeadModal: React.FC = () => {
                 </a>
                 <button
                   onClick={handleResetAndClose}
-                  className="px-5 py-3 border border-white/10 hover:border-white/20 text-xs font-semibold text-zinc-300 rounded uppercase hover:bg-white/5 transition-colors"
+                  className="px-5 py-3 border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 text-xs font-semibold text-zinc-700 dark:text-zinc-300 rounded uppercase hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
                 >
                   DONE
                 </button>
@@ -184,10 +183,10 @@ export const LeadModal: React.FC = () => {
               {step === 1 && (
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400">
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                       Step 1 of 4
                     </h3>
-                    <p className="text-lg font-bold text-white font-display">
+                    <p className="text-lg font-bold text-zinc-900 dark:text-white font-display">
                       What is your primary fitness goal?
                     </p>
                   </div>
@@ -200,19 +199,19 @@ export const LeadModal: React.FC = () => {
                           key={item.id}
                           type="button"
                           onClick={() => setGoal(item.id)}
-                          className={`text-left p-3.5 rounded-lg border transition-all cursor-pointer flex flex-col justify-between ${
+                          className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
                             selected
-                              ? 'bg-[#ccff00]/10 border-[#ccff00] text-white shadow-sm'
-                              : 'bg-[#18181e] border-white/5 text-zinc-300 hover:border-white/20 hover:bg-[#1e1e24]'
+                              ? 'bg-emerald-500/10 dark:bg-[#ccff00]/10 border-emerald-600 dark:border-[#ccff00] text-zinc-900 dark:text-white shadow-sm'
+                              : 'bg-zinc-50 dark:bg-[#18181e] border-black/5 dark:border-white/5 text-zinc-700 dark:text-zinc-300 hover:border-black/20 dark:hover:border-white/20 hover:bg-zinc-100 dark:hover:bg-[#1e1e24]'
                           }`}
                         >
                           <div className="flex items-center justify-between mb-1">
-                            <span className={`text-xs font-bold tracking-tight uppercase ${selected ? 'text-[#ccff00]' : 'text-zinc-200'}`}>
+                            <span className={`text-xs font-bold tracking-tight uppercase ${selected ? 'text-emerald-700 dark:text-[#ccff00]' : 'text-zinc-900 dark:text-zinc-200'}`}>
                               {item.title}
                             </span>
-                            {selected && <Check className="w-3.5 h-3.5 text-[#ccff00]" />}
+                            {selected && <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-[#ccff00]" />}
                           </div>
-                          <span className="text-[11px] text-zinc-400 leading-relaxed">
+                          <span className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed">
                             {item.desc}
                           </span>
                         </button>
@@ -226,10 +225,10 @@ export const LeadModal: React.FC = () => {
               {step === 2 && (
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400">
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                       Step 2 of 4
                     </h3>
-                    <p className="text-lg font-bold text-white font-display">
+                    <p className="text-lg font-bold text-zinc-900 dark:text-white font-display">
                       How often do you currently workout?
                     </p>
                   </div>
@@ -242,19 +241,19 @@ export const LeadModal: React.FC = () => {
                           key={item.id}
                           type="button"
                           onClick={() => setFrequency(item.id)}
-                          className={`w-full text-left p-3.5 rounded-lg border transition-all cursor-pointer flex items-center justify-between ${
+                          className={`w-full text-left p-3.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
                             selected
-                              ? 'bg-[#ccff00]/10 border-[#ccff00] text-white'
-                              : 'bg-[#18181e] border-white/5 text-zinc-300 hover:border-white/20 hover:bg-[#1e1e24]'
+                              ? 'bg-emerald-500/10 dark:bg-[#ccff00]/10 border-emerald-600 dark:border-[#ccff00] text-zinc-900 dark:text-white'
+                              : 'bg-zinc-50 dark:bg-[#18181e] border-black/5 dark:border-white/5 text-zinc-700 dark:text-zinc-300 hover:border-black/20 dark:hover:border-white/20 hover:bg-zinc-100 dark:hover:bg-[#1e1e24]'
                           }`}
                         >
                           <div>
-                            <div className={`text-xs font-bold uppercase ${selected ? 'text-[#ccff00]' : 'text-zinc-200'}`}>
+                            <div className={`text-xs font-bold uppercase ${selected ? 'text-emerald-700 dark:text-[#ccff00]' : 'text-zinc-900 dark:text-zinc-200'}`}>
                               {item.title}
                             </div>
-                            <div className="text-[11px] text-zinc-400">{item.desc}</div>
+                            <div className="text-[11px] text-zinc-500 dark:text-zinc-400">{item.desc}</div>
                           </div>
-                          {selected && <Check className="w-4 h-4 text-[#ccff00]" />}
+                          {selected && <Check className="w-4 h-4 text-emerald-600 dark:text-[#ccff00]" />}
                         </button>
                       );
                     })}
@@ -266,10 +265,10 @@ export const LeadModal: React.FC = () => {
               {step === 3 && (
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400">
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                       Step 3 of 4
                     </h3>
-                    <p className="text-lg font-bold text-white font-display">
+                    <p className="text-lg font-bold text-zinc-900 dark:text-white font-display">
                       Which time slot suits your schedule best?
                     </p>
                   </div>
@@ -282,16 +281,16 @@ export const LeadModal: React.FC = () => {
                           key={item.id}
                           type="button"
                           onClick={() => setPreferredTime(item.id)}
-                          className={`text-left p-3.5 rounded-lg border transition-all cursor-pointer ${
+                          className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer ${
                             selected
-                              ? 'bg-[#ccff00]/10 border-[#ccff00] text-white'
-                              : 'bg-[#18181e] border-white/5 text-zinc-300 hover:border-white/20 hover:bg-[#1e1e24]'
+                              ? 'bg-emerald-500/10 dark:bg-[#ccff00]/10 border-emerald-600 dark:border-[#ccff00] text-zinc-900 dark:text-white'
+                              : 'bg-zinc-50 dark:bg-[#18181e] border-black/5 dark:border-white/5 text-zinc-700 dark:text-zinc-300 hover:border-black/20 dark:hover:border-white/20 hover:bg-zinc-100 dark:hover:bg-[#1e1e24]'
                           }`}
                         >
-                          <div className={`text-xs font-bold uppercase mb-1 ${selected ? 'text-[#ccff00]' : 'text-zinc-200'}`}>
+                          <div className={`text-xs font-bold uppercase mb-1 ${selected ? 'text-emerald-700 dark:text-[#ccff00]' : 'text-zinc-900 dark:text-zinc-200'}`}>
                             {item.label}
                           </div>
-                          <div className="text-[11px] text-zinc-400 font-mono">{item.hours}</div>
+                          <div className="text-[11px] text-zinc-500 dark:text-zinc-400 font-mono">{item.hours}</div>
                         </button>
                       );
                     })}
@@ -303,17 +302,17 @@ export const LeadModal: React.FC = () => {
               {step === 4 && (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400">
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                       Final Step
                     </h3>
-                    <p className="text-lg font-bold text-white font-display">
+                    <p className="text-lg font-bold text-zinc-900 dark:text-white font-display">
                       Where should we send your Pass details?
                     </p>
                   </div>
 
                   <div className="space-y-3 pt-1">
                     <div>
-                      <label className="block text-xs font-medium text-zinc-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1">
                         Full Name *
                       </label>
                       <input
@@ -321,19 +320,19 @@ export const LeadModal: React.FC = () => {
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         placeholder="e.g. Rahul Sharma"
-                        className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#ccff00] transition-colors"
+                        className="w-full bg-zinc-50 dark:bg-[#18181e] border border-black/10 dark:border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-emerald-500 dark:focus:border-[#ccff00] transition-colors"
                       />
                       {errors.fullName && (
-                        <p className="text-xs text-rose-400 mt-1">{errors.fullName}</p>
+                        <p className="text-xs text-rose-500 mt-1">{errors.fullName}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-zinc-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1">
                         Phone / WhatsApp Number (India) *
                       </label>
                       <div className="relative">
-                        <span className="absolute left-3.5 top-2.5 text-xs text-zinc-400 font-mono">
+                        <span className="absolute left-3.5 top-2.5 text-xs text-zinc-500 dark:text-zinc-400 font-mono">
                           +91
                         </span>
                         <input
@@ -341,16 +340,16 @@ export const LeadModal: React.FC = () => {
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           placeholder="98765 43210"
-                          className="w-full bg-[#18181e] border border-white/10 rounded-lg pl-12 pr-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#ccff00] transition-colors font-mono"
+                          className="w-full bg-zinc-50 dark:bg-[#18181e] border border-black/10 dark:border-white/10 rounded-lg pl-12 pr-3.5 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-emerald-500 dark:focus:border-[#ccff00] transition-colors font-mono"
                         />
                       </div>
                       {errors.phone && (
-                        <p className="text-xs text-rose-400 mt-1">{errors.phone}</p>
+                        <p className="text-xs text-rose-500 mt-1">{errors.phone}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-zinc-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1">
                         Any injury or specific goal notes? (Optional)
                       </label>
                       <input
@@ -358,12 +357,12 @@ export const LeadModal: React.FC = () => {
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
                         placeholder="e.g. lower back stiffness, want to prepare for wedding in 4 months"
-                        className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#ccff00] transition-colors"
+                        className="w-full bg-zinc-50 dark:bg-[#18181e] border border-black/10 dark:border-white/10 rounded-lg px-3.5 py-2 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-emerald-500 dark:focus:border-[#ccff00] transition-colors"
                       />
                     </div>
                   </div>
 
-                  <div className="text-[11px] text-zinc-400 border-t border-white/5 pt-3">
+                  <div className="text-[11px] text-zinc-500 dark:text-zinc-400 border-t border-black/5 dark:border-white/5 pt-3">
                     🔒 Zero spam guarantee. We will only contact you to schedule your 1-day free pass.
                   </div>
 
@@ -371,7 +370,7 @@ export const LeadModal: React.FC = () => {
                     <button
                       type="button"
                       onClick={handlePrev}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-zinc-400 hover:text-white rounded hover:bg-white/5 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white rounded hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
                     >
                       <ArrowLeft className="w-3.5 h-3.5" /> Back
                     </button>
@@ -388,17 +387,17 @@ export const LeadModal: React.FC = () => {
 
               {/* Navigation controls for Steps 1-3 */}
               {step < 4 && (
-                <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-6">
+                <div className="flex items-center justify-between pt-6 border-t border-black/5 dark:border-white/5 mt-6">
                   {step > 1 ? (
                     <button
                       type="button"
                       onClick={handlePrev}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer"
                     >
                       <ArrowLeft className="w-3.5 h-3.5" /> Back
                     </button>
                   ) : (
-                    <span className="text-[11px] text-zinc-400">100% Free · No Card Required</span>
+                    <span className="text-[11px] text-zinc-500">100% Free · No Card Required</span>
                   )}
 
                   <button

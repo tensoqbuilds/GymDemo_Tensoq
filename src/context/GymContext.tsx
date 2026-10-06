@@ -40,14 +40,8 @@ interface GymContextType {
 const GymContext = createContext<GymContextType | undefined>(undefined);
 
 export const GymProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    try {
-      const saved = localStorage.getItem('iron_district_theme');
-      return (saved === 'light' || saved === 'dark') ? saved : 'dark';
-    } catch {
-      return 'dark';
-    }
-  });
+  // Requirement: Default initial state is strictly LIGHT MODE across all fresh loads and refreshes
+  const [theme, setTheme] = useState<'dark' | 'light'>('light');
 
   const [config, setConfig] = useState<GymConfig>(() => {
     try {
@@ -65,11 +59,6 @@ export const GymProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     } else {
       document.documentElement.classList.add('light');
       document.documentElement.classList.remove('dark');
-    }
-    try {
-      localStorage.setItem('iron_district_theme', theme);
-    } catch (e) {
-      console.error(e);
     }
   }, [theme]);
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,6 +16,15 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="IRON DISTRICT FITNESS | Hyderabad" />
     <meta name="twitter:description" content="Premium strength training, personal coaching and performance-focused fitness designed for people who refuse average." />
+    
+    <script>
+      // Explicit requirement: Always initialize in LIGHT MODE on fresh load, refresh, or new session.
+      try {
+        document.documentElement.classList.remove('dark');
+        localStorage.removeItem('iron_district_theme');
+        sessionStorage.removeItem('iron_district_theme');
+      } catch (e) {}
+    </script>
     
     <!-- Google Fonts: Syne (Display/Bold Athletic) & Plus Jakarta Sans (Modern Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,7 +93,7 @@
     }
     </script>
   </head>
-  <body class="bg-[#09090b] text-[#f4f4f5] antialiased selection:bg-[#ccff00] selection:text-black">
+  <body class="antialiased selection:bg-[#ccff00] selection:text-black">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
