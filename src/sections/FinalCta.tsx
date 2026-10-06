@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, MessageSquare, Flame } from 'lucide-react';
 import { useGym } from '../context/GymContext';
+import { IMAGES } from '../assets/images';
 
 export const FinalCta: React.FC = () => {
   const { openLeadModal, getWhatsAppLink } = useGym();
@@ -10,7 +11,7 @@ export const FinalCta: React.FC = () => {
       {/* Background Photography with Dramatic Scrim */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/src/assets/images/gym_interior_facility_1791308151063.jpg"
+          src={IMAGES.gymFacility}
           alt="Iron District Fitness Arena"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.15]"

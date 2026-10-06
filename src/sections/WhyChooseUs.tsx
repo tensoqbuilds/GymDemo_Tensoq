@@ -1,9 +1,10 @@
 import React from 'react';
 import { Target, UserCheck, Dumbbell, Flame, CheckCircle, ArrowRight } from 'lucide-react';
 import { useGym } from '../context/GymContext';
+import { IMAGES } from '../assets/images';
 
 export const WhyChooseUs: React.FC = () => {
-  const { openLeadModal, openLightbox } = useGym();
+  const { openLeadModal } = useGym();
 
   return (
     <section id="why-us" className="py-24 lg:py-32 bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 transition-colors relative overflow-hidden">
@@ -44,7 +45,7 @@ export const WhyChooseUs: React.FC = () => {
               {/* Integrated Gym Fitness Photo */}
               <div className="relative rounded-xl overflow-hidden aspect-[16/9] mb-6 bg-zinc-200 dark:bg-[#18181f] border border-black/5 dark:border-white/5">
                 <img
-                  src="/src/assets/images/gym_barbell_deadlift_1791309114855.jpg"
+                  src={IMAGES.barbellDeadlift}
                   alt="Deadlift progressive overload at Iron District"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover filter brightness-[0.92] dark:brightness-[0.75] group-hover:scale-105 transition-transform duration-500"
@@ -101,7 +102,7 @@ export const WhyChooseUs: React.FC = () => {
               {/* Integrated Coach Photo */}
               <div className="relative rounded-xl overflow-hidden aspect-[16/9] mb-6 bg-zinc-200 dark:bg-[#18181f] border border-black/5 dark:border-white/5">
                 <img
-                  src="/src/assets/images/trainer_rahul_mehta_1791308126988.jpg"
+                  src={IMAGES.trainerRahul}
                   alt="Coach Rahul Mehta checking form"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover object-top filter brightness-[0.92] dark:brightness-[0.75] group-hover:scale-105 transition-transform duration-500"
@@ -149,7 +150,7 @@ export const WhyChooseUs: React.FC = () => {
               {/* Integrated Equipment Photo */}
               <div className="relative rounded-xl overflow-hidden aspect-[16/9] mb-6 bg-zinc-200 dark:bg-[#18181f] border border-black/5 dark:border-white/5">
                 <img
-                  src="/src/assets/images/gym_equipment_rogue_1791309141281.jpg"
+                  src={IMAGES.equipmentRogue}
                   alt="Precision Rogue Racks and Dumbbells"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover filter brightness-[0.92] dark:brightness-[0.75] group-hover:scale-105 transition-transform duration-500"
@@ -194,7 +195,7 @@ export const WhyChooseUs: React.FC = () => {
               {/* Integrated Group Training Photo */}
               <div className="relative rounded-xl overflow-hidden aspect-[16/9] mb-6 bg-zinc-200 dark:bg-[#18181f] border border-black/5 dark:border-white/5">
                 <img
-                  src="/src/assets/images/gym_community_workout_1791309127728.jpg"
+                  src={IMAGES.communityWorkout}
                   alt="High energy group functional conditioning"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover filter brightness-[0.92] dark:brightness-[0.75] group-hover:scale-105 transition-transform duration-500"
@@ -240,3 +241,4 @@ export const WhyChooseUs: React.FC = () => {
     </section>
   );
 };
+

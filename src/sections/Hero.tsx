@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, ChevronDown, Star, ShieldCheck, Flame, Dumbbell, Activity, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, Star, ShieldCheck, Dumbbell } from 'lucide-react';
 import { useGym } from '../context/GymContext';
+import { IMAGES } from '../assets/images';
 
 export const Hero: React.FC = () => {
   const { config, openLeadModal, openLightbox } = useGym();
@@ -10,28 +11,28 @@ export const Hero: React.FC = () => {
       id: 'athlete-deadlift',
       title: 'Olympic Strength Zone',
       tag: 'CALIBRATED PLATES',
-      image: '/src/assets/images/gym_barbell_deadlift_1791309114855.jpg',
+      image: IMAGES.barbellDeadlift,
       caption: 'Deadlift platforms with competition Rogue barbells and Eleiko bumpers',
     },
     {
       id: 'rogue-equipment',
       title: 'Precision Rogue Floor',
       tag: 'COMMERCIAL RACKS',
-      image: '/src/assets/images/gym_equipment_rogue_1791309141281.jpg',
+      image: IMAGES.equipmentRogue,
       caption: 'Full rack arrays, matte black dumbbells from 2.5kg to 50kg pairs',
     },
     {
       id: 'coaching-suite',
       title: '1-on-1 Coaching Suite',
       tag: 'CSCS MENTORS',
-      image: '/src/assets/images/pt_trainer_coaching_1791308112706.jpg',
+      image: IMAGES.ptCoaching,
       caption: 'Private movement analysis, InBody tracking, and biomechanics coaching',
     },
     {
       id: 'community-turf',
       title: 'Turf Conditioning Track',
       tag: 'ATHLETIC POWER',
-      image: '/src/assets/images/gym_community_workout_1791309127728.jpg',
+      image: IMAGES.communityWorkout,
       caption: 'Sled pushes, kettlebells, and functional endurance circuits',
     },
   ];

@@ -1,4 +1,5 @@
 import { GymConfig, ProgramItem, TransformationItem, TrainerItem, TestimonialItem, FaqItem, GalleryItem } from '../types/gym';
+import { IMAGES } from '../assets/images';
 
 export const initialGymConfig: GymConfig = {
   gymName: "IRON DISTRICT FITNESS",
@@ -22,9 +23,9 @@ export const initialGymConfig: GymConfig = {
       elite: 6999,
     },
     quarterly: {
-      starter: 4999, // saves 17%
-      pro: 8999,     // saves ~15% (3,499 * 3 = 10,497 -> 8,999)
-      elite: 17999,  // saves ~14% (6,999 * 3 = 20,997 -> 17,999)
+      starter: 4999,
+      pro: 8999,
+      elite: 17999,
     },
   },
   socials: {
@@ -42,7 +43,7 @@ export const gymPrograms: ProgramItem[] = [
     category: "Muscle Building",
     description: "Periodized resistance training utilizing barbell mechanics, isolation work, and progressive overload tracking to pack on lean muscle.",
     tags: ["Powerlifting", "Hypertrophy", "Form Precision"],
-    image: "/src/assets/images/hero_gym_athlete_1791308098243.jpg",
+    image: IMAGES.barbellDeadlift,
     focus: "Hypertrophy & Max Strength",
   },
   {
@@ -52,7 +53,7 @@ export const gymPrograms: ProgramItem[] = [
     category: "Body Recomposition",
     description: "High-density resistance workouts paired with science-backed calorie tracking to strip visceral fat while protecting functional muscle.",
     tags: ["Fat Burn", "HIIT Hybrid", "Nutrition Macro Guide"],
-    image: "/src/assets/images/gym_interior_facility_1791308151063.jpg",
+    image: IMAGES.gymFacility,
     focus: "Fat Loss & Conditioning",
   },
   {
@@ -62,7 +63,7 @@ export const gymPrograms: ProgramItem[] = [
     category: "Personal Training",
     description: "Private coaching tailored to your schedule, physical limitations, posture corrections, and relentless weekly accountability check-ins.",
     tags: ["Private Suite", "Weekly Scans", "Bespoke Diet"],
-    image: "/src/assets/images/pt_trainer_coaching_1791308112706.jpg",
+    image: IMAGES.ptCoaching,
     focus: "Tailored 1-on-1 Mentorship",
   },
   {
@@ -72,7 +73,7 @@ export const gymPrograms: ProgramItem[] = [
     category: "Mobility & Posture",
     description: "Restore joint mobility, undo desk-work stiffness, and develop durable rotational power designed for everyday corporate and sport agility.",
     tags: ["Kettlebells", "Thoracic Mobility", "Injury Prevention"],
-    image: "/src/assets/images/hero_gym_athlete_1791308098243.jpg",
+    image: IMAGES.heroAthlete,
     focus: "Mobility & Longevity",
   },
   {
@@ -82,7 +83,7 @@ export const gymPrograms: ProgramItem[] = [
     category: "Sports Conditioning",
     description: "Engineered for marathoners, cricketers, and competitive sports enthusiasts demanding speed, deceleration stability, and explosive power.",
     tags: ["Sled Pushes", "Plyometrics", "VO2 Max"],
-    image: "/src/assets/images/gym_interior_facility_1791308151063.jpg",
+    image: IMAGES.communityWorkout,
     focus: "Athletic Conditioning",
   },
 ];
@@ -101,7 +102,7 @@ export const gymTransformations: TransformationItem[] = [
       muscleGain: "Lean definition",
       strengthIncrease: "+35% total strength",
     },
-    image: "/src/assets/images/pt_trainer_coaching_1791308112706.jpg",
+    image: IMAGES.ptCoaching,
   },
   {
     id: "priya-reddy",
@@ -116,7 +117,7 @@ export const gymTransformations: TransformationItem[] = [
       muscleGain: "Toned core",
       strengthIncrease: "First unassisted pull-up",
     },
-    image: "/src/assets/images/gym_interior_facility_1791308151063.jpg",
+    image: IMAGES.gymFacility,
   },
   {
     id: "rohan-kapoor",
@@ -131,7 +132,7 @@ export const gymTransformations: TransformationItem[] = [
       muscleGain: "+6 kg lean mass",
       strengthIncrease: "Deadlift 180 kg",
     },
-    image: "/src/assets/images/hero_gym_athlete_1791308098243.jpg",
+    image: IMAGES.heroAthlete,
   },
 ];
 
@@ -143,7 +144,7 @@ export const gymTrainers: TrainerItem[] = [
     experience: "8+ Years Experience",
     specialty: "Powerlifting & Barbell Biomechanics",
     certifications: ["CSCS (NSCA)", "K11 Master Trainer", "IPF National Competitor"],
-    image: "/src/assets/images/trainer_rahul_mehta_1791308126988.jpg",
+    image: IMAGES.trainerRahul,
   },
   {
     id: "neha-sharma",
@@ -152,7 +153,7 @@ export const gymTrainers: TrainerItem[] = [
     experience: "6+ Years Experience",
     specialty: "Female Body Recomposition & Metabolic Health",
     certifications: ["Precision Nutrition L2", "ACE Certified PT", "Pre/Post Natal Specialist"],
-    image: "/src/assets/images/pt_trainer_coaching_1791308112706.jpg",
+    image: IMAGES.ptCoaching,
   },
   {
     id: "karan-patel",
@@ -161,7 +162,7 @@ export const gymTrainers: TrainerItem[] = [
     experience: "7+ Years Experience",
     specialty: "Athletic Conditioning & Hypertrophy",
     certifications: ["EXOS Performance Specialist", "CrossFit L2 Coach", "FMS Mobility L1"],
-    image: "/src/assets/images/hero_gym_athlete_1791308098243.jpg",
+    image: IMAGES.heroAthlete,
   },
 ];
 
@@ -209,37 +210,37 @@ export const gymGallery: GalleryItem[] = [
     id: "g1",
     title: "Precision Rogue Power Racks & Olympic Platforms",
     category: "Strength Zone",
-    image: "/src/assets/images/gym_interior_facility_1791308151063.jpg",
+    image: IMAGES.gymFacility,
   },
   {
     id: "g2",
     title: "Championship Barbell & Deadlift Station",
     category: "Free Weights",
-    image: "/src/assets/images/hero_gym_athlete_1791308098243.jpg",
+    image: IMAGES.barbellDeadlift,
   },
   {
     id: "g3",
     title: "Dedicated 1-on-1 Private Coaching Suite",
     category: "Personal Training",
-    image: "/src/assets/images/pt_trainer_coaching_1791308112706.jpg",
+    image: IMAGES.ptCoaching,
   },
   {
     id: "g4",
     title: "Head Coach Rahul Mehta Overseeing Form Calibration",
     category: "Coaching",
-    image: "/src/assets/images/trainer_rahul_mehta_1791308126988.jpg",
+    image: IMAGES.trainerRahul,
   },
   {
     id: "g5",
     title: "Turf Sprint Track & Sled Pull Corridor",
     category: "Conditioning Zone",
-    image: "/src/assets/images/gym_interior_facility_1791308151063.jpg",
+    image: IMAGES.communityWorkout,
   },
   {
     id: "g6",
     title: "Recovery Lounge & Mineral Hydration Station",
     category: "Recovery",
-    image: "/src/assets/images/pt_trainer_coaching_1791308112706.jpg",
+    image: IMAGES.equipmentRogue,
   },
 ];
 

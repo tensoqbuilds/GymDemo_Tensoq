@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { useGym } from '../context/GymContext';
+import { IMAGES } from '../assets/images';
 
 export const PersonalTraining: React.FC = () => {
   const { openLeadModal } = useGym();
@@ -21,7 +22,7 @@ export const PersonalTraining: React.FC = () => {
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl bg-zinc-200 dark:bg-[#121215] aspect-[4/3]">
               <img
-                src="/src/assets/images/pt_trainer_coaching_1791308112706.jpg"
+                src={IMAGES.ptCoaching}
                 alt="Personal training session at Iron District Fitness"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover object-center filter brightness-[0.9] dark:brightness-[0.8] contrast-[1.1] hover:scale-105 transition-transform duration-700 ease-out"

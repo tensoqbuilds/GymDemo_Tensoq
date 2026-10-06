@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, Star, Award, Calendar, ArrowRight } from 'lucide-react';
 import { useGym } from '../context/GymContext';
+import { IMAGES } from '../assets/images';
 
 export const SocialProofStrip: React.FC = () => {
   const { openLightbox, openLeadModal } = useGym();
@@ -37,25 +38,25 @@ export const SocialProofStrip: React.FC = () => {
       id: "snap-barbell",
       title: "Championship Barbell Platforms",
       category: "Heavy Strength",
-      image: "/src/assets/images/gym_barbell_deadlift_1791309114855.jpg",
+      image: IMAGES.barbellDeadlift,
     },
     {
       id: "snap-coaching",
       title: "1-on-1 Form Calibration",
       category: "Personal Training",
-      image: "/src/assets/images/pt_trainer_coaching_1791308112706.jpg",
+      image: IMAGES.ptCoaching,
     },
     {
       id: "snap-equipment",
       title: "Rogue Racks & Calibrated Dumbbells",
       category: "Equipment",
-      image: "/src/assets/images/gym_equipment_rogue_1791309141281.jpg",
+      image: IMAGES.equipmentRogue,
     },
     {
       id: "snap-community",
       title: "Turf Conditioning Track",
       category: "Athletics",
-      image: "/src/assets/images/gym_community_workout_1791309127728.jpg",
+      image: IMAGES.communityWorkout,
     },
   ];
 
