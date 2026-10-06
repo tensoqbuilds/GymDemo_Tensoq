@@ -1,0 +1,7 @@
+{
+  "name": "Iron District Fitness",
+  "description": "High-converting premium gym demo and lead generation presentation website for Iron District Fitness, Hyderabad.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
