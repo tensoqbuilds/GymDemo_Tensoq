@@ -70,8 +70,8 @@ export const PricingMemberships: React.FC = () => {
   ];
 
   return (
-    <section id="memberships" className="py-24 lg:py-32 bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="memberships" className="py-20 lg:py-28 bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
           <div className="flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-[#ccff00]">

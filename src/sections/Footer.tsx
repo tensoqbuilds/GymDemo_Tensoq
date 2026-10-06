@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="bg-zinc-950 dark:bg-[#070709] border-t border-black/10 dark:border-white/5 text-zinc-400 text-xs py-16 lg:py-20 relative transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/5">
           {/* Brand & Positioning (4 cols) */}
           <div className="lg:col-span-4 space-y-4">

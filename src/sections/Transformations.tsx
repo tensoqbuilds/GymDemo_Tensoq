@@ -10,8 +10,8 @@ export const Transformations: React.FC = () => {
   const current = gymTransformations[activeStory];
 
   return (
-    <section id="transformations" className="py-24 lg:py-32 bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="transformations" className="py-20 lg:py-28 bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="space-y-3 max-w-2xl">

@@ -65,16 +65,15 @@ export const DemoCustomizerDrawer: React.FC = () => {
 
   return (
     <>
-      {/* Subtle trigger button in bottom-left */}
-      <div className="fixed bottom-6 left-6 z-40">
+      {/* Subtle, non-competing demo drawer trigger in bottom-left */}
+      <div className="fixed bottom-5 left-5 z-20">
         <button
           onClick={() => setIsPitchDrawerOpen(true)}
-          className="flex items-center gap-2 px-3 py-2 rounded-full bg-zinc-900/95 dark:bg-[#16161b]/95 border border-white/20 dark:border-white/10 hover:border-[#ccff00]/50 text-zinc-100 dark:text-zinc-300 hover:text-white text-xs font-semibold shadow-xl backdrop-blur-md transition-all group cursor-pointer"
+          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-zinc-900/80 dark:bg-[#16161b]/80 hover:bg-zinc-900 border border-white/10 hover:border-[#ccff00]/40 text-zinc-400 hover:text-white text-[11px] font-mono shadow-md backdrop-blur-md transition-all opacity-70 hover:opacity-100 cursor-pointer"
           title="Sales Pitch Customizer"
         >
-          <Sliders className="w-3.5 h-3.5 text-[#ccff00] group-hover:rotate-45 transition-transform" />
-          <span className="hidden sm:inline">Pitch Demo Mode</span>
-          <span className="sm:hidden">Demo</span>
+          <Sliders className="w-3 h-3 text-[#ccff00]" />
+          <span>Demo Controls</span>
         </button>
       </div>
 

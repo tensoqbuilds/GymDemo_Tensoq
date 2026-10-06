@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Check, ArrowRight, ArrowLeft, MessageSquare, Phone, Calendar, Clock, Target, User } from 'lucide-react';
 import { useGym } from '../context/GymContext';
+import { BrandDumbbellLoader } from './BrandLogoIcon';
 
 export const LeadModal: React.FC = () => {
   const { isLeadModalOpen, closeLeadModal, activeGoalPreset, config, getWhatsAppLink, showToast } = useGym();
@@ -14,6 +15,7 @@ export const LeadModal: React.FC = () => {
   const [notes, setNotes] = useState('');
   const [errors, setErrors] = useState<{ fullName?: string; phone?: string }>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isLeadModalOpen) return null;
 
@@ -71,8 +73,12 @@ export const LeadModal: React.FC = () => {
     }
 
     setErrors({});
-    setIsSubmitted(true);
-    showToast(`Trial Pass confirmed for ${fullName.trim()}!`);
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      showToast(`Trial Pass confirmed for ${fullName.trim()}!`);
+    }, 850);
   };
 
   const handleResetAndClose = () => {
@@ -376,10 +382,20 @@ export const LeadModal: React.FC = () => {
                     </button>
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#ccff00] hover:bg-[#b8e600] text-black font-bold text-xs tracking-wider rounded uppercase transition-all shadow-md cursor-pointer font-display"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#ccff00] hover:bg-[#b8e600] disabled:opacity-90 text-black font-bold text-xs tracking-wider rounded uppercase transition-all shadow-md cursor-pointer font-display"
                     >
-                      <span>CONFIRM VIP TRIAL PASS</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      {isSubmitting ? (
+                        <>
+                          <BrandDumbbellLoader size="xs" themeMode="light" speed="fast" showShadow={false} />
+                          <span>GETTING YOU STARTED...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>CONFIRM VIP TRIAL PASS</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>

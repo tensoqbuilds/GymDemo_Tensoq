@@ -2,13 +2,14 @@ import React from 'react';
 import { Maximize2 } from 'lucide-react';
 import { gymGallery } from '../config/gymConfig';
 import { useGym } from '../context/GymContext';
+import { BrandedImage } from '../components/BrandedImage';
 
 export const Gallery: React.FC = () => {
   const { openLightbox } = useGym();
 
   return (
-    <section id="gallery" className="py-24 lg:py-32 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="py-20 lg:py-28 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="space-y-3 max-w-2xl">
@@ -40,15 +41,16 @@ export const Gallery: React.FC = () => {
                 idx === 0 || idx === 4 ? 'sm:col-span-2 lg:col-span-2 aspect-[16/9]' : 'aspect-[4/3]'
               }`}
             >
-              <img
+              <BrandedImage
                 src={item.image}
                 alt={item.title}
                 referrerPolicy="no-referrer"
+                loaderSize="md"
                 className="w-full h-full object-cover object-center filter brightness-[0.92] dark:brightness-[0.75] contrast-[1.08] group-hover:scale-105 group-hover:brightness-[0.8] dark:group-hover:brightness-[0.6] transition-all duration-500 ease-out"
               />
 
               {/* Hover Dark Scrim */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
               {/* Hover Action Badge */}
               <div className="absolute top-4 right-4 p-2 rounded-lg bg-black/60 backdrop-blur-md text-white/80 group-hover:text-[#ccff00] group-hover:scale-110 transition-all">

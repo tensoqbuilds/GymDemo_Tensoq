@@ -2,6 +2,7 @@ import React from 'react';
 import { Check, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { useGym } from '../context/GymContext';
 import { IMAGES } from '../assets/images';
+import { BrandedImage } from '../components/BrandedImage';
 
 export const PersonalTraining: React.FC = () => {
   const { openLeadModal } = useGym();
@@ -15,19 +16,20 @@ export const PersonalTraining: React.FC = () => {
   ];
 
   return (
-    <section id="personal-training" className="py-24 lg:py-32 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="personal-training" className="py-20 lg:py-28 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: High-Impact Visual Asset */}
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl bg-zinc-200 dark:bg-[#121215] aspect-[4/3]">
-              <img
+              <BrandedImage
                 src={IMAGES.ptCoaching}
                 alt="Personal training session at Iron District Fitness"
                 referrerPolicy="no-referrer"
+                loaderSize="md"
                 className="w-full h-full object-cover object-center filter brightness-[0.9] dark:brightness-[0.8] contrast-[1.1] hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
             </div>
 
             {/* Floating Credibility Pill */}

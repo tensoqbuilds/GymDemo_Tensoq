@@ -27,11 +27,15 @@ import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { GalleryLightbox } from './components/GalleryLightbox';
 import { DemoCustomizerDrawer } from './components/DemoCustomizerDrawer';
 import { Toast } from './components/Toast';
+import { MainWebsiteLoader } from './components/MainWebsiteLoader';
 
 export default function App() {
   return (
     <GymProvider>
-      <div className="min-h-screen bg-white dark:bg-[#09090b] text-zinc-900 dark:text-[#f4f4f5] selection:bg-[#ccff00] selection:text-black transition-colors duration-200 relative">
+      <div className="min-h-screen bg-white dark:bg-[#09090b] text-zinc-900 dark:text-[#f4f4f5] selection:bg-[#ccff00] selection:text-black transition-colors duration-200 relative overflow-x-hidden">
+        {/* Full-Screen Brand Dumbbell Rep Initial Loader */}
+        <MainWebsiteLoader />
+
         {/* 1. Top Announcement Bar */}
         <TopAnnouncement />
 

@@ -1,58 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, Phone, MessageSquare, Sun, Moon } from 'lucide-react';
 import { useGym } from '../context/GymContext';
-
-/**
- * Iron District Gym Geometric SVG Brand Emblem
- * Uses currentColor for paths so it dynamically reacts to navbar state transitions
- */
-const BrandLogoEmblem: React.FC<{ isDarkSurface: boolean }> = ({ isDarkSurface }) => {
-  return (
-    <svg
-      className="w-7 h-7 sm:w-8 sm:h-8 shrink-0 transition-all duration-300"
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      {/* Outer Hexagonal Shield Plate */}
-      <path
-        d="M16 2.5L28.5 9.5V22.5L16 29.5L3.5 22.5V9.5L16 2.5Z"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinejoin="round"
-        className="transition-colors duration-300"
-      />
-      {/* Heavy Barbell Calibrated Discs */}
-      <path
-        d="M9.5 12.5V19.5M12.5 11V21M19.5 11V21M22.5 12.5V19.5"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        className="transition-colors duration-300 opacity-90"
-      />
-      {/* Steel Bar */}
-      <path
-        d="M7 16H25"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        className="transition-colors duration-300"
-      />
-      {/* Electric Neon District Core */}
-      <rect
-        x="14"
-        y="14"
-        width="4"
-        height="4"
-        rx="0.5"
-        className={`transition-colors duration-300 ${
-          isDarkSurface ? 'fill-[#ccff00]' : 'fill-emerald-600'
-        }`}
-      />
-    </svg>
-  );
-};
+import { BrandLogoEmblem } from './BrandLogoIcon';
 
 export const Navbar: React.FC = () => {
   const { config, openLeadModal, getWhatsAppLink, theme, toggleTheme } = useGym();
@@ -135,18 +84,18 @@ export const Navbar: React.FC = () => {
       style={headerBgStyle}
       className={`sticky top-0 z-40 w-full backdrop-blur-md transition-all duration-300 border-b ${
         isScrolled
-          ? 'py-3 shadow-xl shadow-black/30'
-          : 'py-4 sm:py-5 shadow-xs'
+          ? 'py-2.5 sm:py-3 shadow-xl shadow-black/30'
+          : 'py-3.5 sm:py-4.5 shadow-xs'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16 flex items-center justify-between gap-4">
         
         {/* Zone 1: Brand Wordmark & Geometric SVG Emblem */}
         <a
           href="#top"
           onClick={(e) => handleNavClick(e, '#top')}
           style={{ color: logoTextColor }}
-          className={`group flex items-center gap-2.5 sm:gap-3 transition-colors duration-300 select-none cursor-pointer hover:opacity-90 ${
+          className={`group flex items-center gap-2.5 sm:gap-3 transition-colors duration-300 select-none cursor-pointer hover:opacity-90 shrink-0 ${
             isDarkSurface ? 'text-white' : 'text-zinc-950'
           }`}
           aria-label={`${config.gymName} - Back to top`}
@@ -157,7 +106,7 @@ export const Navbar: React.FC = () => {
           <div className="flex flex-col">
             <span
               style={{ color: logoTextColor }}
-              className={`text-base sm:text-lg md:text-xl font-black tracking-tight font-display uppercase whitespace-nowrap leading-none transition-colors duration-300 ${
+              className={`text-base sm:text-lg xl:text-xl font-black tracking-tight font-display uppercase whitespace-nowrap leading-none transition-colors duration-300 ${
                 isDarkSurface ? 'text-white' : 'text-zinc-950'
               }`}
             >
@@ -165,7 +114,7 @@ export const Navbar: React.FC = () => {
             </span>
             <span
               style={{ color: logoSubtextColor }}
-              className={`text-[9px] sm:text-[10px] font-mono tracking-widest uppercase transition-colors duration-300 mt-1 hidden xs:block ${
+              className={`text-[9px] sm:text-[10px] font-mono tracking-widest uppercase transition-colors duration-300 mt-1 hidden md:block ${
                 isDarkSurface ? 'text-zinc-400' : 'text-zinc-600'
               }`}
             >
@@ -174,8 +123,8 @@ export const Navbar: React.FC = () => {
           </div>
         </a>
 
-        {/* Zone 2: Navigation Links with Dynamic Contrast & State-Aware Highlights */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-xs font-semibold tracking-wider font-display">
+        {/* Zone 2: Navigation Links with Balanced Gaps and Dynamic Contrast */}
+        <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-6 text-[11px] xl:text-xs font-semibold tracking-wider font-display">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -209,7 +158,7 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Zone 3: CTA Button, Theme Switcher & Mobile Toggle */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 sm:gap-2.5 xl:gap-3 shrink-0">
           
           {/* Light / Dark Mode Toggle Button with Guaranteed Contrast */}
           <button
@@ -240,10 +189,10 @@ export const Navbar: React.FC = () => {
             )}
           </button>
 
-          {/* High-Converting CTA Button: Constant High Contrast Electric Lime */}
+          {/* High-Converting CTA Button: Fully visible without clipping */}
           <button
             onClick={() => openLeadModal('Navbar CTA')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 text-xs font-black tracking-wide text-black bg-[#ccff00] hover:bg-[#b8e600] active:scale-[0.98] transition-all rounded shadow-md shadow-[#ccff00]/20 whitespace-nowrap cursor-pointer uppercase font-display"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 xl:px-4.5 py-2 xl:py-2.5 text-[11px] xl:text-xs font-black tracking-wide text-black bg-[#ccff00] hover:bg-[#b8e600] active:scale-[0.98] transition-all rounded shadow-md shadow-[#ccff00]/20 whitespace-nowrap cursor-pointer uppercase font-display shrink-0"
           >
             <span>BOOK FREE TRIAL</span>
             <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />

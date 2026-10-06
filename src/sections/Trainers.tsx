@@ -2,13 +2,14 @@ import React from 'react';
 import { ArrowUpRight, Instagram, Linkedin } from 'lucide-react';
 import { gymTrainers } from '../config/gymConfig';
 import { useGym } from '../context/GymContext';
+import { BrandedImage } from '../components/BrandedImage';
 
 export const Trainers: React.FC = () => {
   const { openLeadModal } = useGym();
 
   return (
-    <section id="trainers" className="py-24 lg:py-32 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="trainers" className="py-20 lg:py-28 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="space-y-3 max-w-2xl">
@@ -44,13 +45,14 @@ export const Trainers: React.FC = () => {
             >
               {/* Image Container with Hover Scale */}
               <div className="relative h-96 sm:h-[420px] w-full overflow-hidden bg-zinc-200 dark:bg-[#18181f]">
-                <img
+                <BrandedImage
                   src={trainer.image}
                   alt={trainer.name}
                   referrerPolicy="no-referrer"
+                  loaderSize="md"
                   className="w-full h-full object-cover object-top filter brightness-[0.9] dark:brightness-[0.78] contrast-[1.1] group-hover:scale-105 group-hover:brightness-[0.8] dark:group-hover:brightness-[0.7] transition-all duration-500 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#121215] via-white/20 dark:via-[#121215]/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#121215] via-white/20 dark:via-[#121215]/30 to-transparent pointer-events-none" />
 
                 {/* Experience Chip */}
                 <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-md border border-white/10 px-3 py-1 rounded text-[11px] font-mono text-[#ccff00] font-semibold">

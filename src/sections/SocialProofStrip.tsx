@@ -62,7 +62,7 @@ export const SocialProofStrip: React.FC = () => {
 
   return (
     <section id="proof-strip" className="relative z-20 bg-zinc-50 dark:bg-[#121215] text-zinc-900 dark:text-zinc-100 border-y border-black/5 dark:border-white/5 py-12 lg:py-16 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
         
         {/* Real Gym Fitness Visual Snapshot Reel */}
         <div className="mb-12">

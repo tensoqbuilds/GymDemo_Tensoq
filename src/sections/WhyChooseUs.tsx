@@ -7,8 +7,8 @@ export const WhyChooseUs: React.FC = () => {
   const { openLeadModal } = useGym();
 
   return (
-    <section id="why-us" className="py-24 lg:py-32 bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 transition-colors relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="why-us" className="py-20 lg:py-28 bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 transition-colors relative overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
         {/* Editorial Section Header */}
         <div className="max-w-3xl mb-16 space-y-3">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-[#ccff00]">

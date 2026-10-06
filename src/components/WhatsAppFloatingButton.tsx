@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageSquare, X } from 'lucide-react';
 import { useGym } from '../context/GymContext';
 
@@ -6,19 +6,29 @@ export const WhatsAppFloatingButton: React.FC = () => {
   const { config, getWhatsAppLink } = useGym();
   const [isHovered, setIsHovered] = useState(false);
   const [isBannerDismissed, setIsBannerDismissed] = useState(false);
+  const [showTeaser, setShowTeaser] = useState(false);
+
+  useEffect(() => {
+    // Only reveal teaser bubble after user starts exploring or after 2.5s delay to keep Hero clean
+    const timer = setTimeout(() => {
+      setShowTeaser(true);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5">
-      {/* Quick message teaser bubble (dismissible) */}
-      {!isBannerDismissed && (
-        <div className="hidden sm:flex items-center gap-2 bg-[#18181c] border border-white/10 text-zinc-200 text-xs py-2 px-3.5 rounded-lg shadow-xl animate-in fade-in slide-in-from-bottom-2 duration-300 max-w-xs">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-medium">
-            Have questions about memberships or trial passes?
+    <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-30 flex flex-col items-end gap-2 pointer-events-auto">
+      {/* Quick message teaser bubble (reveals subtly after initial hero glance, never obstructs hero) */}
+      {!isBannerDismissed && showTeaser && (
+        <div className="hidden md:flex items-center gap-2.5 bg-zinc-950/95 dark:bg-[#18181c]/95 border border-white/15 text-zinc-200 text-xs py-2 px-3 rounded-lg shadow-xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-2 duration-300 max-w-[260px]">
+          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+          <span className="font-medium text-[11px] leading-tight">
+            Have questions about memberships or free passes?
           </span>
           <button
             onClick={() => setIsBannerDismissed(true)}
-            className="text-zinc-500 hover:text-white p-0.5"
+            className="text-zinc-400 hover:text-white p-0.5 rounded transition-colors shrink-0"
             aria-label="Dismiss message bubble"
           >
             <X className="w-3.5 h-3.5" />
@@ -30,7 +40,7 @@ export const WhatsAppFloatingButton: React.FC = () => {
       <div className="relative group">
         {/* Hover Tooltip */}
         <div
-          className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-black/90 border border-white/10 text-zinc-100 text-xs font-semibold py-1.5 px-3 rounded shadow-lg pointer-events-none transition-all duration-200 ${
+          className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-black/90 border border-white/10 text-zinc-100 text-xs font-semibold py-1.5 px-3 rounded shadow-lg pointer-events-none transition-all duration-200 hidden sm:block ${
             isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'
           }`}
         >
@@ -43,12 +53,12 @@ export const WhatsAppFloatingButton: React.FC = () => {
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white shadow-xl shadow-[#25D366]/25 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+          className="flex items-center justify-center w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white shadow-lg shadow-[#25D366]/25 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
           aria-label="Chat with Iron District Fitness on WhatsApp"
         >
           {/* Custom crisp SVG WhatsApp icon */}
           <svg
-            className="w-7 h-7 fill-white"
+            className="w-6 h-6 sm:w-6.5 sm:h-6.5 fill-white"
             viewBox="0 0 24 24"
             aria-hidden="true"
           >

@@ -54,3 +54,33 @@
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
+
+/* Controlled athletic gym rep animation for brand dumbbell */
+@keyframes dumbbellRep {
+  0% {
+    transform: translateY(3px);
+  }
+  12% {
+    transform: translateY(3px);
+  }
+  48% {
+    transform: translateY(-6px);
+  }
+  58% {
+    transform: translateY(-6px);
+  }
+  90% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(3px);
+  }
+}
+
+.animate-dumbbell-rep {
+  animation: dumbbellRep 1.35s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+.animate-dumbbell-rep-fast {
+  animation: dumbbellRep 0.95s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}

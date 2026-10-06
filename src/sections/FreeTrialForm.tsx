@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, CheckCircle2, MessageSquare } from 'lucide-react';
 import { useGym } from '../context/GymContext';
+import { BrandDumbbellLoader } from '../components/BrandLogoIcon';
 
 export const FreeTrialForm: React.FC = () => {
   const { config, getWhatsAppLink, showToast } = useGym();
@@ -11,6 +12,7 @@ export const FreeTrialForm: React.FC = () => {
   const [preferredTime, setPreferredTime] = useState('Morning Slot (06:00 AM – 09:00 AM)');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<{ fullName?: string; phone?: string }>({});
 
   const goals = [
@@ -48,15 +50,19 @@ export const FreeTrialForm: React.FC = () => {
     }
 
     setErrors({});
-    setSubmitted(true);
-    showToast(`VIP Day Pass requested for ${fullName}!`);
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      showToast(`VIP Day Pass requested for ${fullName}!`);
+    }, 850);
   };
 
   const whatsappMessage = `Hi ${config.gymName}, I just submitted a Free Trial Pass request on your website!\n\nName: ${fullName}\nPhone: ${phone}\nGoal: ${goal}\nPreferred Slot: ${preferredTime}\nMessage: ${message || 'None'}`;
 
   return (
-    <section id="free-trial" className="py-24 lg:py-32 bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="free-trial" className="py-20 lg:py-28 bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Pitch & Value Proposition */}
           <div className="lg:col-span-5 space-y-6">
@@ -250,10 +256,20 @@ export const FreeTrialForm: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full py-4 bg-[#ccff00] hover:bg-[#b8e600] text-black font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-lg shadow-[#ccff00]/15 flex items-center justify-center gap-2 cursor-pointer font-display"
+                    disabled={isSubmitting}
+                    className="w-full py-4 bg-[#ccff00] hover:bg-[#b8e600] disabled:opacity-90 text-black font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-lg shadow-[#ccff00]/15 flex items-center justify-center gap-2 cursor-pointer font-display"
                   >
-                    <span>BOOK MY FREE TRIAL</span>
-                    <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                    {isSubmitting ? (
+                      <>
+                        <BrandDumbbellLoader size="xs" themeMode="light" speed="fast" showShadow={false} />
+                        <span>GETTING YOU STARTED...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>BOOK MY FREE TRIAL</span>
+                        <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                      </>
+                    )}
                   </button>
 
                   <div className="flex items-center justify-between text-[11px] text-zinc-500 pt-2 font-mono">
