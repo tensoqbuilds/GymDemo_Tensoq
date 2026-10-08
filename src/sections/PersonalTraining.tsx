@@ -17,7 +17,7 @@ export const PersonalTraining: React.FC = () => {
 
   return (
     <section id="personal-training" className="py-16 sm:py-20 lg:py-24 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: High-Impact Visual Asset */}
           <div className="lg:col-span-6 relative">

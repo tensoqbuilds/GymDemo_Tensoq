@@ -8,7 +8,7 @@ export const WhyChooseUs: React.FC = () => {
 
   return (
     <section id="why-us" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 transition-colors relative overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Editorial Section Header */}
         <div className="max-w-3xl mb-16 space-y-3">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-[#ccff00]">

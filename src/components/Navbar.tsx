@@ -14,7 +14,7 @@ export const Navbar: React.FC = () => {
       const scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
       setIsScrolled(scrollPos > 25);
 
-      // Simple active section detection
+      // Active section detection
       const sections = ['location', 'gallery', 'memberships', 'transformations', 'trainers', 'programs', 'top'];
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
@@ -54,10 +54,10 @@ export const Navbar: React.FC = () => {
 
   /**
    * Theme-Aware Navbar State Model:
-   * 1. LIGHT + TOP: Light surface, near-black logo/text, dark icons.
-   * 2. LIGHT + SCROLLED: Near-black surface, pure-white logo/text, light icons.
-   * 3. DARK + TOP: Near-black surface, pure-white logo/text, light icons.
-   * 4. DARK + SCROLLED: Elevated near-black surface, pure-white logo/text, light icons.
+   * 1. LIGHT + TOP: Light surface, near-black logo/text, dark icons, green CTA.
+   * 2. LIGHT + SCROLLED: Near-black surface, pure-white logo/text, light icons, green CTA.
+   * 3. DARK + TOP: Near-black surface, pure-white logo/text, neon icons, green CTA.
+   * 4. DARK + SCROLLED: Elevated near-black surface, pure-white logo/text, neon icons, green CTA.
    */
   const isDarkSurface = theme === 'dark' || isScrolled;
 
@@ -65,8 +65,8 @@ export const Navbar: React.FC = () => {
     backgroundColor: isScrolled
       ? 'rgba(9, 9, 11, 0.96)'
       : theme === 'dark'
-        ? 'rgba(9, 9, 11, 0.88)'
-        : 'rgba(255, 255, 255, 0.95)',
+        ? 'rgba(9, 9, 11, 0.92)'
+        : 'rgba(255, 255, 255, 0.96)',
     borderColor: isScrolled
       ? 'rgba(255, 255, 255, 0.12)'
       : theme === 'dark'
@@ -74,7 +74,7 @@ export const Navbar: React.FC = () => {
         : 'rgba(0, 0, 0, 0.08)',
   };
 
-  // Explicit foreground colors for foolproof WCAG contrast
+  // High-contrast foreground colors
   const logoTextColor = isDarkSurface ? '#ffffff' : '#09090b';
   const logoSubtextColor = isDarkSurface ? '#a1a1aa' : '#52525b';
   const iconColor = isDarkSurface ? '#ffffff' : '#09090b';
@@ -82,49 +82,67 @@ export const Navbar: React.FC = () => {
   return (
     <header
       style={headerBgStyle}
-      className={`sticky top-0 z-40 w-full backdrop-blur-md transition-all duration-300 border-b ${
-        isScrolled
-          ? 'py-2.5 sm:py-3 shadow-xl shadow-black/30'
-          : 'py-3.5 sm:py-4.5 shadow-xs'
-      }`}
+      className="sticky top-0 z-40 w-full backdrop-blur-md transition-colors duration-300 border-b shadow-xs select-none"
     >
-      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 flex items-center justify-between gap-3 sm:gap-4">
+      {/* 
+        MASTER NAVBAR CONTAINER:
+        Strict 3-Region Layout Architecture (Grid on Desktop, Flex on Mobile/Tablet)
+        Region 1 (Left):   Brand Wordmark + Geometric SVG Emblem
+        Region 2 (Center): Primary Navigation Links (Centrally positioned with dedicated space)
+        Region 3 (Right):  Actions Group (Theme Toggle + Book Free Trial CTA + Mobile Menu Button)
         
-        {/* Zone 1: Brand Wordmark & Geometric SVG Emblem */}
-        <a
-          href="#top"
-          onClick={(e) => handleNavClick(e, '#top')}
-          style={{ color: logoTextColor }}
-          className={`group flex items-center gap-2 sm:gap-2.5 xl:gap-3 transition-colors duration-300 select-none cursor-pointer hover:opacity-90 shrink-0 ${
-            isDarkSurface ? 'text-white' : 'text-zinc-950'
-          }`}
-          aria-label={`${config.gymName} - Back to top`}
-        >
-          {/* Theme-aware SVG logo icon with currentColor */}
-          <BrandLogoEmblem isDarkSurface={isDarkSurface} />
+        Guaranteed:
+        - CSS Grid tracks isolate Region 2 from Region 3 so "CONTACT" can NEVER collide with the Theme Toggle.
+        - Strict vertical center alignment across all elements via items-center.
+        - Geometrically invariant header height (h-18 sm:h-20) to prevent layout shifts during scroll.
+      */}
+      <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 h-18 sm:h-20 flex items-center justify-between gap-4 xl:grid xl:grid-cols-[auto_1fr_auto] xl:gap-6 2xl:gap-8">
+        
+        {/* ========================================================
+            REGION 1: BRAND LOGO (LEFT)
+            Controlled flex-basis, crisp SVG mark, dynamic theme colors
+           ======================================================== */}
+        <div className="flex items-center shrink-0">
+          <a
+            href="#top"
+            onClick={(e) => handleNavClick(e, '#top')}
+            style={{ color: logoTextColor }}
+            className={`group flex items-center gap-2.5 sm:gap-3 transition-colors duration-300 cursor-pointer hover:opacity-90 shrink-0 ${
+              isDarkSurface ? 'text-white' : 'text-zinc-950'
+            }`}
+            aria-label={`${config.gymName} - Back to top`}
+          >
+            {/* Hexagonal Barbell Emblem */}
+            <BrandLogoEmblem isDarkSurface={isDarkSurface} className="w-7 h-7 sm:w-8 sm:h-8" />
 
-          <div className="flex flex-col">
-            <span
-              style={{ color: logoTextColor }}
-              className={`text-base sm:text-lg xl:text-xl font-black tracking-tight font-display uppercase whitespace-nowrap leading-none transition-colors duration-300 ${
-                isDarkSurface ? 'text-white' : 'text-zinc-950'
-              }`}
-            >
-              {config.gymName}
-            </span>
-            <span
-              style={{ color: logoSubtextColor }}
-              className={`text-[9px] xl:text-[10px] font-mono tracking-widest uppercase transition-colors duration-300 mt-1 hidden xl:block ${
-                isDarkSurface ? 'text-zinc-400' : 'text-zinc-600'
-              }`}
-            >
-              {config.neighborhood} · {config.city}
-            </span>
-          </div>
-        </a>
+            <div className="flex flex-col justify-center">
+              <span
+                style={{ color: logoTextColor }}
+                className={`text-base sm:text-lg 2xl:text-xl font-black tracking-tight font-display uppercase whitespace-nowrap leading-none transition-colors duration-300 ${
+                  isDarkSurface ? 'text-white' : 'text-zinc-950'
+                }`}
+              >
+                {config.gymName}
+              </span>
+              <span
+                style={{ color: logoSubtextColor }}
+                className={`text-[9px] 2xl:text-[10px] font-mono tracking-widest uppercase transition-colors duration-300 mt-0.5 hidden xl:block ${
+                  isDarkSurface ? 'text-zinc-400' : 'text-zinc-600'
+                }`}
+              >
+                {config.neighborhood} · {config.city}
+              </span>
+            </div>
+          </a>
+        </div>
 
-        {/* Zone 2: Navigation Links with Balanced Gaps and Dynamic Contrast */}
-        <nav className="hidden xl:flex items-center gap-3.5 2xl:gap-5 text-xs font-semibold tracking-wider font-display shrink min-w-0">
+        {/* ========================================================
+            REGION 2: NAVIGATION LINKS (CENTER)
+            Centered within its own dedicated grid cell.
+            Responsive gaps (tighter at 1280px-1500px, spacious at 1500px+)
+            CAN NEVER OVERLAP Region 3 actions.
+           ======================================================== */}
+        <nav className="hidden xl:flex items-center justify-center gap-2 2xl:gap-4 shrink-0 px-2 min-w-0">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -141,7 +159,7 @@ export const Navbar: React.FC = () => {
                       ? '#047857'
                       : '#27272a',
                 }}
-                className={`py-1 relative uppercase transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:transition-all after:duration-200 ${
+                className={`px-2 py-1 text-[11px] 2xl:text-xs font-semibold tracking-wider font-display uppercase whitespace-nowrap transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:transition-all after:duration-200 ${
                   isDarkSurface
                     ? isActive
                       ? 'text-[#ccff00] font-bold after:w-full after:bg-[#ccff00]'
@@ -157,10 +175,15 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Zone 3: CTA Button, Theme Switcher & Mobile/Tablet Toggle */}
-        <div className="flex items-center gap-2 sm:gap-2.5 xl:gap-3 shrink-0">
+        {/* ========================================================
+            REGION 3: ACTIONS GROUP (RIGHT)
+            One coherent flex container in normal document flow.
+            Order: [Theme Toggle] -> [Book Free Trial CTA] -> [Mobile/Tablet Toggle]
+            Shared visual horizontal center line (h-9 sm:h-10)
+           ======================================================== */}
+        <div className="flex items-center gap-2.5 sm:gap-3 xl:gap-3.5 justify-end shrink-0">
           
-          {/* Light / Dark Mode Toggle Button with Guaranteed Contrast */}
+          {/* Action 1: Theme Toggle Button (Has its own distinct footprint) */}
           <button
             type="button"
             onClick={toggleTheme}
@@ -169,7 +192,7 @@ export const Navbar: React.FC = () => {
               borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)',
               backgroundColor: isDarkSurface ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.04)',
             }}
-            className={`p-2 sm:p-2.5 rounded-lg border transition-all duration-300 cursor-pointer ${
+            className={`h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg border transition-all duration-300 cursor-pointer shrink-0 ${
               isDarkSurface
                 ? 'border-white/20 bg-white/10 text-white hover:border-white/40 hover:bg-white/15'
                 : 'border-black/15 bg-black/5 text-zinc-900 hover:border-black/30 hover:bg-black/10'
@@ -189,16 +212,16 @@ export const Navbar: React.FC = () => {
             )}
           </button>
 
-          {/* High-Converting CTA Button: Guaranteed visible and never clipped */}
+          {/* Action 2: High-Converting "BOOK FREE TRIAL" Button */}
           <button
             onClick={() => openLeadModal('Navbar CTA')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 sm:px-3.5 xl:px-4 py-2 xl:py-2.5 text-[11px] xl:text-xs font-black tracking-wide text-black bg-[#ccff00] hover:bg-[#b8e600] active:scale-[0.98] transition-all rounded shadow-md shadow-[#ccff00]/20 whitespace-nowrap cursor-pointer uppercase font-display shrink-0"
+            className="hidden sm:inline-flex items-center justify-center gap-1.5 h-9 sm:h-10 px-3.5 2xl:px-4.5 text-[11px] 2xl:text-xs font-black tracking-wide text-black bg-[#ccff00] hover:bg-[#b8e600] active:scale-[0.98] transition-all rounded shadow-md shadow-[#ccff00]/20 whitespace-nowrap cursor-pointer uppercase font-display shrink-0"
           >
             <span>BOOK FREE TRIAL</span>
             <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
           </button>
 
-          {/* Mobile/Tablet Menu Toggle Button with Dynamic Contrast */}
+          {/* Action 3: Mobile/Tablet Menu Trigger (Active below xl / 1280px) */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -207,7 +230,7 @@ export const Navbar: React.FC = () => {
               borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)',
               backgroundColor: isDarkSurface ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.03)',
             }}
-            className={`xl:hidden p-2 rounded-lg border transition-all duration-300 cursor-pointer ${
+            className={`xl:hidden h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg border transition-all duration-300 cursor-pointer shrink-0 ${
               isDarkSurface
                 ? 'text-white border-white/20 hover:border-white/40 hover:bg-white/10'
                 : 'text-zinc-950 border-black/15 hover:border-black/30 hover:bg-black/5'
@@ -220,7 +243,11 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile/Tablet Navigation Drawer with Synchronized Theme Styling */}
+      {/* ========================================================
+          MOBILE / TABLET NAVIGATION DRAWER
+          Smooth slide-down overlay for screens < 1280px
+          Synchronized light / dark theme tokens
+         ======================================================== */}
       {mobileMenuOpen && (
         <div
           style={{
@@ -233,7 +260,7 @@ export const Navbar: React.FC = () => {
           }`}
         >
           <nav className="flex flex-col space-y-3.5">
-            {/* Theme Toggle row in Mobile Drawer */}
+            {/* Theme Toggle in Mobile Drawer */}
             <div
               style={{
                 borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',

@@ -64,7 +64,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Global Master Container with Strict Grid Alignment & Pacing */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-10 sm:py-12 lg:py-16 xl:py-18 w-full flex flex-col justify-between">
+      <div className="relative z-10 max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-10 sm:py-12 lg:py-16 xl:py-18 w-full flex flex-col justify-between">
         
         {/* Strict Two-Column Desktop Grid aligned to the exact SAME top content baseline */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
