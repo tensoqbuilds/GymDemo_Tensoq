@@ -16,8 +16,8 @@ export const PersonalTraining: React.FC = () => {
   ];
 
   return (
-    <section id="personal-training" className="py-20 lg:py-28 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
+    <section id="personal-training" className="py-16 sm:py-20 lg:py-24 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: High-Impact Visual Asset */}
           <div className="lg:col-span-6 relative">
@@ -32,8 +32,8 @@ export const PersonalTraining: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Floating Credibility Pill */}
-            <div className="absolute -bottom-6 -right-2 sm:right-6 bg-white/95 dark:bg-[#18181f]/95 border border-emerald-500/40 dark:border-[#ccff00]/40 rounded-xl p-4 sm:p-5 shadow-2xl backdrop-blur-md max-w-xs">
+            {/* Floating Credibility Badge */}
+            <div className="absolute -bottom-5 right-2 sm:-bottom-6 sm:right-6 bg-white/95 dark:bg-[#18181f]/95 border border-emerald-500/40 dark:border-[#ccff00]/40 rounded-xl p-3.5 sm:p-5 shadow-2xl backdrop-blur-md max-w-[260px] sm:max-w-xs">
               <div className="flex items-center gap-2 mb-1">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-[#ccff00]" />
                 <span className="text-[11px] font-mono uppercase text-emerald-600 dark:text-[#ccff00] font-bold">

@@ -10,7 +10,7 @@ export const TopAnnouncement: React.FC = () => {
       aria-label="Limited Trial Offer"
       className="relative z-50 bg-zinc-950 dark:bg-[#121215] border-b border-black/10 dark:border-white/5 text-zinc-300 text-xs py-2 transition-colors hover:bg-zinc-900 dark:hover:bg-[#16161a]"
     >
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16 flex items-center justify-between gap-4">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 flex items-center justify-between gap-4">
         <button
           onClick={() => openLeadModal('Free Trial Pass')}
           className="w-full flex items-center justify-center gap-2 group cursor-pointer text-left sm:text-center"

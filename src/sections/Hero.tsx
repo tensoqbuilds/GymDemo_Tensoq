@@ -64,16 +64,16 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Global Master Container with Strict Grid Alignment & Pacing */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16 py-8 sm:py-10 lg:py-12 xl:py-14 w-full flex flex-col justify-between">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-10 sm:py-12 lg:py-16 xl:py-18 w-full flex flex-col justify-between">
         
         {/* Strict Two-Column Desktop Grid aligned to the exact SAME top content baseline */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
           
-          {/* Left Column: Headlines, Value Proposition & CTAs (48% width on wide desktop) */}
-          <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-start">
+          {/* Left Column: Headlines, Value Proposition & CTAs */}
+          <div className="lg:col-span-6 flex flex-col justify-start">
             
             {/* Eyebrow: Aligns vertically with the top edge of the right-side media card */}
-            <div className="flex items-center gap-2 text-xs font-semibold tracking-widest text-emerald-700 dark:text-[#ccff00] uppercase font-mono mb-3.5 sm:mb-4">
+            <div className="flex items-center gap-2 text-xs font-semibold tracking-widest text-emerald-700 dark:text-[#ccff00] uppercase font-mono mb-3 sm:mb-3.5">
               <span className="flex items-center gap-1.5">
                 <Dumbbell className="w-3.5 h-3.5" />
                 PREMIUM FITNESS
@@ -83,7 +83,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Deliberate 3-Line Dramatic Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[4rem] font-black font-display tracking-tight text-zinc-900 dark:text-white uppercase leading-[0.93] max-w-xl mb-4 sm:mb-5">
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-black font-display tracking-tight text-zinc-900 dark:text-white uppercase leading-[0.95] max-w-xl mb-4 sm:mb-5">
               <span>BUILD</span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-500 dark:from-white dark:via-zinc-200 dark:to-zinc-400">
@@ -99,10 +99,10 @@ export const Hero: React.FC = () => {
             </p>
 
             {/* Dual CTAs with Strict Alignment and Contrast */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 mb-5 sm:mb-6">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mb-5 sm:mb-6">
               <button
                 onClick={() => openLeadModal('Hero Primary CTA')}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#ccff00] hover:bg-[#b8e600] text-black font-bold text-xs sm:text-sm tracking-wider uppercase rounded shadow-lg shadow-[#ccff00]/20 active:scale-[0.98] transition-all cursor-pointer font-display"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 bg-[#ccff00] hover:bg-[#b8e600] text-black font-bold text-xs sm:text-sm tracking-wider uppercase rounded shadow-lg shadow-[#ccff00]/20 active:scale-[0.98] transition-all cursor-pointer font-display"
               >
                 <span>BOOK A FREE TRIAL</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
@@ -110,7 +110,7 @@ export const Hero: React.FC = () => {
 
               <button
                 onClick={() => handleScrollTo('memberships')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-zinc-900 hover:bg-black text-white dark:bg-[#18181c]/90 dark:hover:bg-[#24242c] dark:text-white dark:hover:text-[#ccff00] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 font-bold text-xs sm:text-sm tracking-wider uppercase rounded backdrop-blur-md transition-all cursor-pointer font-display"
+                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-zinc-900 hover:bg-black text-white dark:bg-[#18181c]/90 dark:hover:bg-[#24242c] dark:text-white dark:hover:text-[#ccff00] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 font-bold text-xs sm:text-sm tracking-wider uppercase rounded backdrop-blur-md transition-all cursor-pointer font-display"
               >
                 <span>VIEW MEMBERSHIPS</span>
               </button>
@@ -131,8 +131,8 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Integrated Media Showcase & Matching Thumbnail Module (52% width) */}
-          <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-start w-full">
+          {/* Right Column: Integrated Media Showcase & Matching Thumbnail Module */}
+          <div className="lg:col-span-6 flex flex-col justify-start w-full">
             
             {/* Main Feature Image Card with High-Impact Editorial Layout */}
             <div className="relative w-full rounded-2xl overflow-hidden border border-black/10 dark:border-white/15 bg-white dark:bg-[#121215] shadow-xl group">
@@ -147,7 +147,7 @@ export const Hero: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
 
                 {/* Live Training Status Overlay */}
-                <div className="absolute top-3.5 left-3.5 flex items-center gap-2 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 text-xs">
+                <div className="absolute top-3.5 left-3.5 flex items-center gap-2 bg-black/85 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 text-xs">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span className="text-[10px] sm:text-[11px] font-mono uppercase text-zinc-200 font-bold">
                     ACTIVE GYM FLOOR · {config.neighborhood.toUpperCase()}
@@ -155,7 +155,7 @@ export const Hero: React.FC = () => {
                 </div>
 
                 {/* Focus Tag */}
-                <div className="absolute top-3.5 right-3.5 bg-[#ccff00] text-black text-[10px] font-black font-display tracking-widest uppercase px-2.5 py-1 rounded shadow">
+                <div className="absolute top-3.5 right-3.5 bg-[#ccff00] text-black text-[10px] font-black font-display tracking-widest uppercase px-2 py-0.5 rounded shadow">
                   {activeImage.tag}
                 </div>
 

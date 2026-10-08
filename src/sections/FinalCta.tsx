@@ -19,8 +19,8 @@ export const FinalCta: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/75 to-[#09090b]/80" />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-8 lg:px-14 xl:px-16 text-center space-y-8">
-        <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#ccff00] bg-black/60 px-4 py-1.5 rounded-full border border-[#ccff00]/30 backdrop-blur-md">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 text-center space-y-8">
+        <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#ccff00] bg-black/75 px-3 py-1 rounded-md border border-[#ccff00]/30 backdrop-blur-md">
           <Flame className="w-3.5 h-3.5" />
           <span>YOUR STRONGER SELF STARTS TODAY</span>
         </div>

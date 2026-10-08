@@ -88,14 +88,14 @@ export const Navbar: React.FC = () => {
           : 'py-3.5 sm:py-4.5 shadow-xs'
       }`}
     >
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16 flex items-center justify-between gap-4">
+      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 flex items-center justify-between gap-3 sm:gap-4">
         
         {/* Zone 1: Brand Wordmark & Geometric SVG Emblem */}
         <a
           href="#top"
           onClick={(e) => handleNavClick(e, '#top')}
           style={{ color: logoTextColor }}
-          className={`group flex items-center gap-2.5 sm:gap-3 transition-colors duration-300 select-none cursor-pointer hover:opacity-90 shrink-0 ${
+          className={`group flex items-center gap-2 sm:gap-2.5 xl:gap-3 transition-colors duration-300 select-none cursor-pointer hover:opacity-90 shrink-0 ${
             isDarkSurface ? 'text-white' : 'text-zinc-950'
           }`}
           aria-label={`${config.gymName} - Back to top`}
@@ -114,7 +114,7 @@ export const Navbar: React.FC = () => {
             </span>
             <span
               style={{ color: logoSubtextColor }}
-              className={`text-[9px] sm:text-[10px] font-mono tracking-widest uppercase transition-colors duration-300 mt-1 hidden md:block ${
+              className={`text-[9px] xl:text-[10px] font-mono tracking-widest uppercase transition-colors duration-300 mt-1 hidden xl:block ${
                 isDarkSurface ? 'text-zinc-400' : 'text-zinc-600'
               }`}
             >
@@ -124,7 +124,7 @@ export const Navbar: React.FC = () => {
         </a>
 
         {/* Zone 2: Navigation Links with Balanced Gaps and Dynamic Contrast */}
-        <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-6 text-[11px] xl:text-xs font-semibold tracking-wider font-display">
+        <nav className="hidden xl:flex items-center gap-3.5 2xl:gap-5 text-xs font-semibold tracking-wider font-display shrink min-w-0">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -157,7 +157,7 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Zone 3: CTA Button, Theme Switcher & Mobile Toggle */}
+        {/* Zone 3: CTA Button, Theme Switcher & Mobile/Tablet Toggle */}
         <div className="flex items-center gap-2 sm:gap-2.5 xl:gap-3 shrink-0">
           
           {/* Light / Dark Mode Toggle Button with Guaranteed Contrast */}
@@ -189,16 +189,16 @@ export const Navbar: React.FC = () => {
             )}
           </button>
 
-          {/* High-Converting CTA Button: Fully visible without clipping */}
+          {/* High-Converting CTA Button: Guaranteed visible and never clipped */}
           <button
             onClick={() => openLeadModal('Navbar CTA')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 xl:px-4.5 py-2 xl:py-2.5 text-[11px] xl:text-xs font-black tracking-wide text-black bg-[#ccff00] hover:bg-[#b8e600] active:scale-[0.98] transition-all rounded shadow-md shadow-[#ccff00]/20 whitespace-nowrap cursor-pointer uppercase font-display shrink-0"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 sm:px-3.5 xl:px-4 py-2 xl:py-2.5 text-[11px] xl:text-xs font-black tracking-wide text-black bg-[#ccff00] hover:bg-[#b8e600] active:scale-[0.98] transition-all rounded shadow-md shadow-[#ccff00]/20 whitespace-nowrap cursor-pointer uppercase font-display shrink-0"
           >
             <span>BOOK FREE TRIAL</span>
             <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
           </button>
 
-          {/* Mobile Menu Toggle Button with Dynamic Contrast */}
+          {/* Mobile/Tablet Menu Toggle Button with Dynamic Contrast */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -207,7 +207,7 @@ export const Navbar: React.FC = () => {
               borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)',
               backgroundColor: isDarkSurface ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.03)',
             }}
-            className={`lg:hidden p-2 rounded-lg border transition-all duration-300 cursor-pointer ${
+            className={`xl:hidden p-2 rounded-lg border transition-all duration-300 cursor-pointer ${
               isDarkSurface
                 ? 'text-white border-white/20 hover:border-white/40 hover:bg-white/10'
                 : 'text-zinc-950 border-black/15 hover:border-black/30 hover:bg-black/5'
@@ -220,7 +220,7 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer with Synchronized Theme Styling */}
+      {/* Mobile/Tablet Navigation Drawer with Synchronized Theme Styling */}
       {mobileMenuOpen && (
         <div
           style={{
@@ -228,7 +228,7 @@ export const Navbar: React.FC = () => {
             borderColor: isDarkSurface ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.1)',
             color: isDarkSurface ? '#ffffff' : '#09090b',
           }}
-          className={`lg:hidden fixed inset-x-0 top-full backdrop-blur-xl border-b shadow-2xl p-6 transition-all duration-200 ${
+          className={`xl:hidden fixed inset-x-0 top-full backdrop-blur-xl border-b shadow-2xl p-6 transition-all duration-200 ${
             isDarkSurface ? 'text-white border-white/15' : 'text-zinc-950 border-black/10'
           }`}
         >

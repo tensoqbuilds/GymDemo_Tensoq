@@ -8,8 +8,8 @@ export const Trainers: React.FC = () => {
   const { openLeadModal } = useGym();
 
   return (
-    <section id="trainers" className="py-20 lg:py-28 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 xl:px-16">
+    <section id="trainers" className="py-16 sm:py-20 lg:py-24 bg-zinc-50/50 dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 border-t border-black/5 dark:border-white/5 transition-colors relative">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="space-y-3 max-w-2xl">
@@ -77,14 +77,12 @@ export const Trainers: React.FC = () => {
                   </p>
 
                   {/* Certifications metadata */}
-                  <div className="pt-2 flex flex-wrap gap-1.5">
-                    {trainer.certifications.map((cert) => (
-                      <span
-                        key={cert}
-                        className="text-[10px] font-mono text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-white/5 border border-black/5 dark:border-white/5 px-2 py-0.5 rounded"
-                      >
-                        {cert}
-                      </span>
+                  <div className="pt-2 flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
+                    {trainer.certifications.map((cert, cIdx) => (
+                      <React.Fragment key={cert}>
+                        {cIdx > 0 && <span aria-hidden="true" className="opacity-40">·</span>}
+                        <span className="font-semibold text-zinc-700 dark:text-zinc-300">{cert}</span>
+                      </React.Fragment>
                     ))}
                   </div>
                 </div>
